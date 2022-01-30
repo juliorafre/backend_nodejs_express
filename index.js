@@ -24,11 +24,6 @@ const options = {
 };
 app.use(cors(options));
 
-if (process.env.NODE_ENV == 'development') {
-  const morgan = require('morgan');
-  app.use(morgan('tiny'));
-}
-
 app.get('/', (req, res) => {
   res.send('Hello World');
 });
