@@ -1,7 +1,11 @@
 const express = require('express');
-const morgan = require("morgan");
+const morgan = require('morgan');
 const cors = require('cors');
-const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/error.handler');
+const {
+  logErrors,
+  errorHandler,
+  boomErrorHandler,
+} = require('./middlewares/error.handler');
 const routesApi = require('./routes');
 
 const app = express();
@@ -17,13 +21,16 @@ const options = {
     } else {
       callback(new Error('No permitido'));
     }
-  }
-}
+  },
+};
 app.use(cors(options));
-app.use(morgan('tiny'));
+
+if (process.env.NODE_ENV == 'development') {
+  app.use(morgan('tiny'));
+}
 
 app.get('/', (req, res) => {
-  res.send("Hello World");
+  res.send('Hello World');
 });
 
 routesApi(app);
