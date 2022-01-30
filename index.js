@@ -5,14 +5,14 @@ const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/err
 const routesApi = require('./routes');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.enable('strict routing');
 app.use(express.json());
 const allowList = ['http://localhost:8080', 'https://myapp.co'];
 const options = {
   origin: (origin, callback) => {
-    if (allowList.includes(origin)) {
+    if (allowList.includes(origin) || !origin) {
       callback(null, true);
     } else {
       callback(new Error('No permitido'));
