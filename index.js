@@ -1,5 +1,4 @@
 const express = require('express');
-const morgan = require('morgan');
 const cors = require('cors');
 const {
   logErrors,
@@ -26,6 +25,7 @@ const options = {
 app.use(cors(options));
 
 if (process.env.NODE_ENV == 'development') {
+  const morgan = require('morgan');
   app.use(morgan('tiny'));
 }
 
