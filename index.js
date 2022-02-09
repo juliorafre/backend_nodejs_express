@@ -7,6 +7,8 @@ const {
 } = require('./middlewares/error.handler');
 const routesApi = require('./routes');
 
+// considerar agregar morgan
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
